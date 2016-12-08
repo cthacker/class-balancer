@@ -442,7 +442,7 @@ class Smote(UnbalancedDataset):
         return ret_x, ret_y
 
 
-class Balancer(object):
+class ClassBalancer(object):
     """
     Performs undersampling majority, then oversampling minority
 
