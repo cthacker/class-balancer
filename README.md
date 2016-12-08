@@ -24,6 +24,14 @@ for chaining oversampling and undersampling to acheive the correct class balance
 
 3) You can ignore all of this and just use it as a simple black box that solves your issues.
 
+# Installation
+
+```
+git clone https://github.com/cthacker/class-balancer.git
+cd class-balancer
+python setup.py install
+```
+
 # Example Use
 
 
