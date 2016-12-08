@@ -1,4 +1,4 @@
-# ClassBalancer
+# class-balancer
 Simple package for dealing with unbalanced data sets in Python.
 
 # Overview
