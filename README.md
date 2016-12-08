@@ -77,8 +77,21 @@ plt.xlim((-1.5, 2.5))
 plt.ylim((-1.5, 1.5))
 
 plt.show()  
+```
+
+**Output**
 
 ```
+Determining class statistics...
+2 classes detected: {0: 52, 1: 200} with weights:  {0: 2.4230769230769229, 1: 0.63}
+Start resampling ...
+3 Tomek links found.
+Under-sampling performed, removed tomek links: Counter({1: 197, 0: 52})
+Under-sampling performed, new total: Counter({1: 126, 0: 52})
+Determining class statistics...
+2 classes detected: {0: 52, 1: 126} with weights:  {0: 2.4230769230769229, 1: 0.63}
+Generated 73 new samples ...
+Over-sampling performed: Counter({1.0: 126, 0.0: 125})
+```
+
 ![Class Balancer on Moon data set](/example/balanced_data.png?raw=true "Balanced Data")
-
-
