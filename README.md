@@ -34,6 +34,51 @@ python setup.py install
 
 # Example Use
 
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+import sklearn.datasets
+import seaborn # not needed, makes more aesthetic plots
 
+#import class balancer
+from balancer import ClassBalancer
+
+np.random.seed(0)
+X, y = sklearn.datasets.make_moons(400, noise=0.15)
+
+ax = plt.subplot(3, 1, 1)
+ax.set_title("Original Data")
+plt.scatter(X[:, 0], X[:, 1], s=40, c=y, cmap=plt.cm.Spectral)
+plt.xlim((-1.5, 2.5))
+plt.ylim((-1.5, 1.5))
+
+# remove 70% of class 0
+delmask = []
+for i, cl in enumerate(y):
+    if cl == 0:
+        if np.random.random_integers(1, 10) > 3:
+            delmask.append(i)
+
+X = np.delete(X, delmask, axis=0)
+y = np.delete(y, delmask, axis=0)
+ax = plt.subplot(3, 1, 2)
+ax.set_title("Red data has been artificially reduced")
+plt.scatter(X[:, 0], X[:, 1], s=40, c=y, cmap=plt.cm.Spectral)
+plt.xlim((-1.5, 2.5))
+plt.ylim((-1.5, 1.5))
+
+
+newclass = ClassBalancer(random_state=0, verbose=True, frac=1.0)
+newx, newy = newclass.fit_transform(X, y)
+ax = plt.subplot(3, 1, 3)
+ax.set_title("Classes are now balanced")
+plt.scatter(newx[:, 0], newx[:, 1], s=40, c=newy, cmap=plt.cm.Spectral)
+plt.xlim((-1.5, 2.5))
+plt.ylim((-1.5, 1.5))
+
+plt.show()  
+
+```
+![Class Balancer on Moon data set](/example/balanced_data.png?raw=true "Balanced Data")
 
 
