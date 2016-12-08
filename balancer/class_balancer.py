@@ -75,7 +75,7 @@ class UnbalancedDataset(object):
         self.y = y
 
         if self.verbose:
-            print "Determining classes statistics... "
+            print "Determining class statistics... "
 
         # Get all the unique elements in the target array and counts
         uniques = set(self.y)
