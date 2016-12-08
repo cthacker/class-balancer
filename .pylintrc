@@ -1,0 +1,2 @@
+[MESSAGES CONTROL]
+disable=invalid-name,redefined-outer-name,superfluous-parens,too-many-arguments,too-many-branches,too-many-locals,duplicate-code,too-few-public-methods,too-many-public-methods,no-self-use,too-many-return-statements,too-many-statements,too-many-instance-attributes,too-many-lines,unnecessary-lambda,too-many-function-args,bad-continuation 

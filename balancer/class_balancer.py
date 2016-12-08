@@ -1,17 +1,19 @@
+"""
+Based off of: https://github.com/fmfn/UnbalancedDataset
+Now handles more than 2 classes
+
+only implements some of that code
+Oversampling: Smote + Tomek Links
+Undersampling: Tomek Links + Random
+
+Adds a fraction to determine how balanced the data will become
+Also allows for passing in class weights
+"""
+
 from collections import Counter
 from copy import deepcopy
 from sklearn.neighbors import NearestNeighbors
 import numpy as np
-
-# Based off of: https://github.com/fmfn/UnbalancedDataset
-# Now handles more than 2 classes
-
-# only implements some of that code
-# Oversampling: Smote + Tomek Links
-# Undersampling: Tomek Links + Random
-
-# Adds a fraction to determine how balanced the data will become
-# Also allows for passing in class weights
 
 
 class UnbalancedDataset(object):
@@ -152,6 +154,7 @@ class UnbalancedDataset(object):
 
     @staticmethod
     def is_tomek(y, nn_index, class_type, complement=False, verbose=True):
+        # pylint: disable=simplifiable-if-statement
         """
         is_tomek uses the target vector and the first neighbour of every sample
         point and looks for Tomek pairs. Returning a boolean vector with True
@@ -317,11 +320,12 @@ class RandUnderSample(UnbalancedDataset):
                     links = self.is_tomek(ret_y, nns, class_id,
                                           complement=self.complement,
                                           verbose=self.verbose)
-                    true_links = links[links == True]  # nopep8
+                    true_links = links[links]
                     if len(true_links) > n_samples:
+                        print "I'm here"
                         # random sample the tomek links until it equals the number desired samples
                         to_remove = len(true_links) - n_samples
-                        ind_to_flip = np.random.choice(np.where(links == True)[0],  # nopep8
+                        ind_to_flip = np.random.choice(np.where(links)[0],  # nopep8
                                                        to_remove,
                                                        replace=False)
                         links[ind_to_flip] = False
