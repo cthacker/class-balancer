@@ -38,7 +38,8 @@ python setup.py install
 import matplotlib.pyplot as plt
 import numpy as np
 import sklearn.datasets
-import seaborn # not needed, makes more aesthetic plots
+import seaborn as sns # not needed, makes more aesthetic plots
+sns.set(style="darkgrid")
 
 #import class balancer
 from balancer import ClassBalancer
@@ -76,6 +77,7 @@ plt.scatter(newx[:, 0], newx[:, 1], s=40, c=newy, cmap=plt.cm.Spectral)
 plt.xlim((-1.5, 2.5))
 plt.ylim((-1.5, 1.5))
 
+plt.tight_layout()
 plt.show()  
 ```
 

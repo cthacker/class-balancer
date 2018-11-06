@@ -77,7 +77,7 @@ class UnbalancedDataset(object):
         self.y = y
 
         if self.verbose:
-            print "Determining class statistics... "
+            print("Determining class statistics... ")
 
         # Get all the unique elements in the target array and counts
         uniques = set(self.y)
@@ -101,7 +101,7 @@ class UnbalancedDataset(object):
             self.weight_dict = provide_class_weight
         else:
             weight_array = len(self.y)/(float(len(uniques)) * class_counts)
-            for i in xrange(len(weight_array)):
+            for i in range(len(weight_array)):
                 # limits how much undersampling/oversampling we do by applying the frac
                 if weight_array[i] < 1:
                     weight_array[i] = 1 - (1 - weight_array[i])*self.frac
@@ -113,10 +113,8 @@ class UnbalancedDataset(object):
                 self.weight_dict[class_labels[i]] = weight
 
         if self.verbose:
-            print str(len(uniques)) + \
-                " classes detected: " + \
-                str(self.ucd) + " with weights: ", \
-                str(self.weight_dict)
+            print(str(len(uniques)) + " classes detected: " + str(self.ucd) + " with weights: ",
+                  str(self.weight_dict))
 
         return self.weight_dict
 
@@ -301,7 +299,7 @@ class RandUnderSample(UnbalancedDataset):
         # loop over all classes that need oversampling
         ret_x = deepcopy(self.x)
         ret_y = deepcopy(self.y)
-        for class_id, weight in self.weight_dict.iteritems():
+        for class_id, weight in self.weight_dict.items():
             if weight < 1:
                 len_class = len(self.y[self.y == class_id])
 
@@ -322,7 +320,6 @@ class RandUnderSample(UnbalancedDataset):
                                           verbose=self.verbose)
                     true_links = links[links]
                     if len(true_links) > n_samples:
-                        print "I'm here"
                         # random sample the tomek links until it equals the number desired samples
                         to_remove = len(true_links) - n_samples
                         ind_to_flip = np.random.choice(np.where(links)[0],  # nopep8
@@ -393,7 +390,7 @@ class Smote(UnbalancedDataset):
         # loop over all classes that need oversampling
         ret_x = deepcopy(self.x)
         ret_y = deepcopy(self.y)
-        for class_id, weight in self.weight_dict.iteritems():
+        for class_id, weight in self.weight_dict.items():
             if weight > 1:
                 minx = self.x[self.y == class_id]
                 miny = self.y[self.y == class_id]
